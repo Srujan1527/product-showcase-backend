@@ -4,6 +4,7 @@ import express from "express";
 import cors from "cors";
 import helmet from "helmet";
 import { query } from "./db/config.ts";
+import productsRouter from "./products/routes.ts";
 
 const PORT = process.env.PORT;
 const app = express();
@@ -21,6 +22,8 @@ app.get("/health", async (req, res) => {
     res.status(500).json({ status: "error", db: "not_connected" });
   }
 });
+
+app.use("/api/v1/products", productsRouter);
 
 app.listen(PORT, () => {
   console.log(`Server started successfully at port:${PORT}`);
