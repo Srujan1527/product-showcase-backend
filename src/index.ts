@@ -3,8 +3,8 @@ dotenv.config();
 import express from "express";
 import cors from "cors";
 import helmet from "helmet";
-import { query } from "./db/config.ts";
-import productsRouter from "./products/routes.ts";
+import { query } from "./db/config";
+import productsRouter from "./products/routes";
 
 const PORT = process.env.PORT;
 const app = express();
