@@ -28,6 +28,16 @@ CREATE TABLE
         created_at TIMESTAMPTZ DEFAULT NOW ()
     );
 
+CREATE TABLE
+    users (
+        id SERIAL PRIMARY KEY,
+        name TEXT NOT NULL,
+        email TEXT NOT NULL UNIQUE,
+        password_hash TEXT NOT NULL,
+        is_admin BOOLEAN NOT NULL DEFAULT FALSE,
+        created_at TIMESTAMPTZ DEFAULT NOW ()
+    );
+
 -- Optional indexes to score better on “DB design” part
 CREATE INDEX idx_products_category ON products (category);
 
