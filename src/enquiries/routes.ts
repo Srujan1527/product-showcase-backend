@@ -3,9 +3,10 @@ import {
   createEnquiryController,
   getAllEnquiriesController,
 } from "./controller";
+import { authMiddleware, adminOnly } from "../middleware/authMiddleware";
 
 const router = express.Router();
 
-router.get("/", getAllEnquiriesController);
+router.get("/", authMiddleware, adminOnly, getAllEnquiriesController);
 router.post("/", createEnquiryController);
 export default router;
