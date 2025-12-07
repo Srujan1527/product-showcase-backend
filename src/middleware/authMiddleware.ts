@@ -18,15 +18,14 @@ export function authMiddleware(
   next: NextFunction
 ) {
   const authHeader = req.headers.authorization;
-  // console.log("authHeader", authHeader);
+
   if (!authHeader || !authHeader.startsWith("Bearer ")) {
     return res.status(401).json({ message: "Authorization header missing" });
   }
 
   const token = authHeader.split(" ")[1] as string;
-  console.log("token", token);
+
   try {
-    console.log("VERIFY TOKEN", JWT_SECRET);
     const decoded = jwt.verify(token, JWT_SECRET) as {
       userId: number;
       email: string;
